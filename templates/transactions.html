@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User Management</title>
+
+    <style>
+        body {
+            font-family: Arial;
+        }
+        form {
+            width: 40%;
+            margin: 20px auto;
+            padding: 15px;
+            border: 1px solid #ccc;
+        }
+        input {
+            width: 95%;
+            padding: 8px;
+            margin: 8px 0;
+        }
+        button {
+            padding: 8px 15px;
+            background: green;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        table {
+            border-collapse: collapse;
+            width: 60%;
+            margin: 30px auto;
+        }
+        th, td {
+            border: 1px solid #333;
+            padding: 10px;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+    </style>
+</head>
+<body>
+
+<h2 style="text-align:center;">Add New Transaction</h2>
+
+<form action="/add" method="post">
+    <input type="text" name="name" placeholder="Enter Name" required>
+    <input type="text" name="details" placeholder="Enter Details" required>
+    <input type="text" name="contact" placeholder="Enter Contact" required>
+    <button type="submit">Add</button>
+</form>
+
+<h2 style="text-align:center;">Transaction List</h2>
+
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Details</th>
+        <th>Contact</th>
+        <th>Actions</th>
+    </tr>
+
+    {% for txn in transactions %}
+    <tr>
+        <td>{{ txn.name }}</td>
+        <td>{{ txn.details }}</td>
+        <td>{{ txn.contact }}</td>
+        <td>
+            <a href="/edit/{{ loop.index0 }}">Edit</a>
+
+            <form action="/delete/{{ loop.index0 }}" method="post" style="display:inline;">
+                <button type="submit" onclick="return confirm('Are you sure?')">
+                    Delete
+                </button>
+            </form>
+        </td>
+    </tr>
+    {% endfor %}
+
+</table>
+
+</body>
+</html>

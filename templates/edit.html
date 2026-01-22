@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Transaction</title>
+</head>
+<body>
+
+<h2>Edit Transaction</h2>
+
+<form action="/update/{{ index }}" method="post">
+    <input type="text" name="name" value="{{ transaction.name }}" required><br><br>
+    <input type="text" name="details" value="{{ transaction.details }}" required><br><br>
+    <input type="text" name="contact" value="{{ transaction.contact }}" required><br><br>
+
+    <button type="submit">Update</button>
+</form>
+
+</body>
+</html>
